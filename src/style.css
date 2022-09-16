@@ -75,11 +75,6 @@ button:focus-visible {
   padding: 2rem;
   text-align: center;
 }
-input {
-  height: 40px;
-  font-size: inherit;
-  font-family: inherit;
-}
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -101,4 +96,10 @@ input {
   top: 8px;
   left: 4px;
   opacity: 0.5;
+}
+.input {
+  height: 40px;
+  font-size: inherit;
+  font-family: inherit;
+  -webkit-appearance: none;
 }
