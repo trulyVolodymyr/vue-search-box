@@ -10,48 +10,26 @@ export const useWords = defineStore('words', {
   },
 
   getters: {
-    sortedWords: (state) => state.words.sort((a, b) => a.localeCompare(b)),
     filteredWords: (state) => state.filterWords(),
   },
 
   actions: {
     filterWords() {
-      let res = []
-      for (var i = 0; i < this.sortedWords.length; i++) {
+      let res = this.words.filter((word) => {
         if (
-          this.sortedWords[i].startsWith(this.enteredWord) &&
+          word.startsWith(this.enteredWord.trim()) &&
           this.enteredWord != ''
         ) {
-          res.push(this.sortedWords[i])
+          return word
         }
-      }
+      })
       this.advisedWord = res[0]
       return res
     },
     generateWords() {
-      for (let k = 0; k < 50000; k++) {
-        //1 OPTION
-        //
-        //
-        // let result = Math.random().toString(36).slice(2, 7)
-        //2 OPTION
-        //
-        //
-        let result = ''
-        const characters = 'abcdefghijklmnopqrstuvwxyz'
-        let charactersLength = characters.length
-        for (let i = 0; i < 8; i++) {
-          result += characters.charAt(
-            Math.floor(Math.random() * charactersLength)
-          )
-        }
-        this.words.push(result)
-      }
-      // 3 OPTION
-      //
-      // this.words = this.words = Array.from({ length: 50000 }, () =>
-      //   Math.random().toString(36).slice(2, 9)
-      // )
+      this.words = this.words = Array.from({ length: 50000 }, () =>
+        Math.random().toString(36).slice(2, 11)
+      )
     },
     setWord() {
       this.enteredWord = this.advisedWord
